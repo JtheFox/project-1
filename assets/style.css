@@ -176,15 +176,15 @@ body {
 }
 
   /* Style for Demographics Section */
-.demographics {
+.demographics, .weather {
     background: rgba(0, 0, 0, 0.5);
     padding-bottom: 20px;
-    margin: 0 100px;
+    margin: 0 100px 100px 100px;
     border-radius: 10px;
     border: 2px solid white;
 }
 
-.demographics h2 {
+.demographics h2, .weather h2 {
     color: white;
     padding-top: 20px;
     border-bottom: 2px solid white;
@@ -197,5 +197,17 @@ body {
 }
 
 /* Style for Weather Section */
+.weather h2 {
+    color: white;
+}
+
+#temp {
+    font-size: 50px;
+}
+
+.date-and-time {
+    margin: 5px 0;
+    font-size: 30px;
+}
 
 /* TODO: add mobile formatting */

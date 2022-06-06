@@ -33,51 +33,69 @@
 
             <!--Card Content for the demographics sections-->
             <div class="d-flex justify-content-around aligns-item-center">
-                <div class="card">
-                    <h3 class="demo-headings">Capital</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Capital</h4>
                     <p id="capital">Washington, DC</p>
                 </div>
 
-                <div class="card">
-                    <h3 class="demo-headings">Population</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Population</h4>
                     <p id="population">1,000,000</p>
                 </div>
 
-                <div class="card">
-                    <h3 class="demo-headings">Language</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Language</h4>
                     <p id="language">English</p>
                 </div>
             </div>  
 
             <!--Card Content for the demographics sections-->
             <div class="d-flex justify-content-around aligns-item-center">
-                <div class="card">
-                    <h3 class="demo-headings">Currency</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Currency</h4>
                     <p id="currency">USD</p>
                 </div>
 
-                <div class="card">
-                    <h3 class="demo-headings">Region</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Region</h4>
                     <p id="time-zone">America</p>
                 </div>
 
-                <div class="card">
-                    <h3 class="demo-headings">Contients</h3>
+                <div class="card text-center">
+                    <h4 class="demo-headings">Contients</h4>
                     <p id="contients">North America</p>
                 </div>
             </div>
         </section>
 
         <!--Weather Section-->
-        <section>
-            <h2>Current Weather</h2>
-            <p id="date-time">6/04/2022 12:30PM</p>
-            <p id="temp">78 F</p>
+        <section class="weather">
+            <h2 class="text-center">Current Weather</h2>
+
+            <div class="date-and-time d-flex justify-content-center aligns-item-center">
+                <p id="date-time" class="text-light">6/04/2022 <span id="time">12:30PM</span></p>
+            </div>
+            <p id="temp" class="text-center text-light">78 F</p>
             <img id="weather-image">
-            <p id="wind">Wind Speed</p>
-            <p id="humidity">Humidity</p>
-            <p id="uv-index">UV Index</p>
-            <p id="pressure">Pressure</p>
+
+            <div class="d-flex justify-content-around aligns-item-center">
+                <div class="card text-center">
+                    <h4>Wind Speed</h4>
+                    <p id="wind">Wind Speed</p>
+                </div>
+                <div class="card text-center">
+                    <h4>Humidity</h4>
+                    <p id="humidity">Humidity</p>
+                </div>
+                <div class="card text-center">
+                    <h4>UV Index</h4>
+                    <p id="uv-index">UV Index</p>
+                </div>
+                <div class="card text-center">
+                    <h4>Pressure</h4>
+                    <p id="pressure">Pressure</p>
+                </div>
+            </div>
         </section>
     </main>
     

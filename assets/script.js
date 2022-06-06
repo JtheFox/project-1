@@ -55,6 +55,13 @@ function displayCountry(data) {
     var uvIndex = $("#uv-index");
     var pressure = $("#pressure");
 
+    //Display each country content to html 
+    capital.text(data.capital);
+    population.text(data.population);
+    language.text(data.language);
+    currency.text(data.currency);
+    timeZone.text(data.timeZones);
+    contients.text(data.contients);
     
 }
 

@@ -6,13 +6,13 @@
 }
 
 body {
-    height: 100vh; /*TODO: remove this line later*/
     margin: 0;
     padding: 0;
     background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.7)), url(./images/home-bg.jpg);
     background-position: center, auto;
     background-repeat: no-repeat, no-repeat;
     background-size: cover, cover;
+    background-attachment: fixed, fixed;
 }
 
 /* header */
@@ -140,6 +140,7 @@ body {
 
 /* tooltip */
 .sw-tooltip {
+    position: relative;
     text-decoration: underline dotted white;
     margin-top: 5%;
     font-size: 0.9rem;
@@ -151,3 +152,28 @@ body {
     cursor: help;
 }
 
+.sw-tooltip .sw-tooltiptext {
+    font-size: 0.75rem;
+    visibility: hidden;
+    width: 20rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    left: -150%;
+    top: 150%;
+  }
+  
+  .sw-tooltip:hover .sw-tooltiptext {
+    visibility: visible;
+  }
+
+  .sw-tooltiptitle {
+      font-weight: 400;
+      font-size: 1.1rem;
+  }
+
+  /* TODO: add mobile formatting */

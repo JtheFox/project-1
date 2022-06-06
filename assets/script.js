@@ -38,6 +38,24 @@ function getCountry() {
 }
 
 function displayCountry(data) {
-    
+
+    //Query Selector for display country info
+    var capital = $("#capital");
+    var population = $("#population");
+    var language = $("#language");
+    var currency = $("#currency");
+    var timeZone = $("#time-zone");
+    var contients = $("#contients");
+
+    //Query Selector for weather info 
+    var dateAndTime = $("#date-time");
+    var temperature = $("#temp");
+    var windSpeed = $("#wind");
+    var humidity = $("#humidity");
+    var uvIndex = $("#uv-index");
+    var pressure = $("#pressure");
+
     
 }
+
+getCountry();

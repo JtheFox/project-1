@@ -4,11 +4,12 @@ var swSearchBtn = document.querySelector("#sw-searchBtn");
 var swSearchTxt = document.querySelector("#sw-searchInput");
 var swTooltip = document.querySelector("sw-searchInput");
 var weatherAPIKey = '';
-var countryData = {
-    weather: {}
-};
+
 
 function getCountry() {
+    var countryData = {
+        weather: {}
+    };
     // first api call (REST Countries)
     var data = restCountryData;
     data = data[0];
@@ -25,7 +26,7 @@ function getCountry() {
     // var weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.capitalInfo.latlng[0]}&lon=${data.capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}`
     // third api call (OpenWeatherMap)
     data = weatherData;
-    var weather = weatherData.weather;
+    var weather = countryData.weather;
     weather.temp = data.current.temp;
     weather.humidity = data.current.humidity;
     weather.pressure = data.current.pressure;
@@ -33,8 +34,10 @@ function getCountry() {
     weather.uvIndex = data.current.uvi;
     weather.dataTime = data.current.dt;
 
+    displayCountry(countryData);
 }
 
 function displayCountry(data) {
+    
     
 }

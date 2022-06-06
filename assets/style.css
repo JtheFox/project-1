@@ -164,15 +164,38 @@ body {
     z-index: 1;
     left: -150%;
     top: 150%;
-  }
+}
   
-  .sw-tooltip:hover .sw-tooltiptext {
+.sw-tooltip:hover .sw-tooltiptext {
     visibility: visible;
-  }
+}
 
-  .sw-tooltiptitle {
-      font-weight: 400;
-      font-size: 1.1rem;
-  }
+.sw-tooltiptitle {
+    font-weight: 400;
+    font-size: 1.1rem;
+}
 
-  /* TODO: add mobile formatting */
+  /* Style for Demographics Section */
+.demographics {
+    background: rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    margin: 0 100px;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.demographics h2 {
+    color: white;
+    padding-top: 20px;
+    border-bottom: 2px solid white;
+}
+
+.card {
+    width: 220px;
+    padding: 10px;
+    margin: 20px;
+}
+
+/* Style for Weather Section */
+
+/* TODO: add mobile formatting */

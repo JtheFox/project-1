@@ -8,9 +8,33 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <header class="sw-header">
+        <h1>Somewhere.</h1>
+    </header>
+    <main class="sw-landing">
+        <button class="sw-randomBtn">Take Me Somewhere.</button>
+        <div class="sw-genCriteria">With
+            <select name="maxPopulation" id="maxPopulation">
+                <option value="0">Any</option>
+                <option value="50000000">&lt; 50 Million</option>
+                <option value="25000000">&lt; 10 Million</option>
+                <option value="5000000">&lt; 5 Million</option>
+                <option value="1000000">&lt; 1 Million</option>
+            </select>
+        Population</div>
+        <div class="sw-searchBar">
+            <input type="text" class="sw-searchInput">
+            <div class="sw-searchBtn"></div>
+        </div>
+        <p class="sw-tooltip">What is this?</p>
+        <!-- TODO: Create informational tooltip modal -->
+    </main>
 </body>
 </html>

@@ -15,7 +15,6 @@ body {
     background-attachment: fixed, fixed;
 }
 
-/* header */
 .sw-header {
     display: flex;
     align-items: baseline;

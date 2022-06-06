@@ -27,6 +27,14 @@ body {
     cursor: default;
 }
 
+.result-header {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: lighter;
+    line-height: 1.5rem;
+    cursor: default;
+}
+
 .sw-header > * {
     margin-bottom: 0;
 }
@@ -137,6 +145,14 @@ body {
     box-shadow: 0 0 0.5em white;
 }
 
+#search {
+    height: 50px;
+}
+
+.search-btn {
+    height: 40px;
+}
+
 /* tooltip */
 .sw-tooltip {
     position: relative;
@@ -208,6 +224,13 @@ body {
 .date-and-time {
     margin: 5px 0;
     font-size: 30px;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    overflow: hidden;
+    padding: 20px;
 }
 
 /* TODO: add mobile formatting */

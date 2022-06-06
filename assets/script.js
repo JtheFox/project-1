@@ -63,6 +63,13 @@ function displayCountry(data) {
     timeZone.text(data.timeZones);
     contients.text(data.contients);
     
+    //Display each weather content to html
+    dateAndTime.text(data.dataTime);
+    temperature.text(data.temp);
+    windSpeed.text(data.windSpeed);
+    humidity.text(data.humidity);
+    uvIndex.text(data.uvIndex);
+    pressure.text(data.pressure);
 }
 
 getCountry();

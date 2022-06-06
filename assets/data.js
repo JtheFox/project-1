@@ -96,7 +96,7 @@ var restCountryData = [{
   "independent": true
 }]
 
-var restCountryCapitalData = [
+var restCapitalData = [
     {
         "name": {
             "common": "Peru",
@@ -310,7 +310,7 @@ var restCountryCapitalData = [
     }
 ]
 
-var weatherData = {
+var weatherAPIData = {
     "lat": -12.05,
     "lon": -77.05,
     "timezone": "America/Lima",

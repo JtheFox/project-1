@@ -14,11 +14,12 @@ function randomCountry(maxPop) {
         .then(response =>response.json())
         .then(data =>{
             // filter all countries by max population if a max was chosen
-    if (maxPop) data = data.filter(country => country.population < maxPop);
-    // pick random country from array of all (filtered) countries
-    var randCountry = data[Math.floor(Math.random() * data.length)];
-    countryData = parseCountry[randCountry];
-        });
+            if (maxPop) data = data.filter(country => country.population < maxPop);
+            // pick random country from array of all (filtered) countries
+            var randCountry = data[Math.floor(Math.random() * data.length)];
+            countryData = parseCountry[randCountry];
+        })
+        .catch(err => console.error(err));
     
     return countryData;
 }

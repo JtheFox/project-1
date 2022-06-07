@@ -27,6 +27,14 @@ body {
     cursor: default;
 }
 
+.result-header {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: lighter;
+    line-height: 1.5rem;
+    cursor: default;
+}
+
 .sw-header > * {
     margin-bottom: 0;
 }
@@ -137,6 +145,14 @@ body {
     box-shadow: 0 0 0.5em white;
 }
 
+#search {
+    height: 50px;
+}
+
+.search-btn {
+    height: 40px;
+}
+
 /* tooltip */
 .sw-tooltip {
     position: relative;
@@ -164,15 +180,57 @@ body {
     z-index: 1;
     left: -150%;
     top: 150%;
-  }
+}
   
-  .sw-tooltip:hover .sw-tooltiptext {
+.sw-tooltip:hover .sw-tooltiptext {
     visibility: visible;
-  }
+}
 
-  .sw-tooltiptitle {
-      font-weight: 400;
-      font-size: 1.1rem;
-  }
+.sw-tooltiptitle {
+    font-weight: 400;
+    font-size: 1.1rem;
+}
 
-  /* TODO: add mobile formatting */
+  /* Style for Demographics Section */
+.demographics, .weather {
+    background: rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    margin: 0 100px 100px 100px;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.demographics h2, .weather h2 {
+    color: white;
+    padding-top: 20px;
+    border-bottom: 2px solid white;
+}
+
+.card {
+    width: 220px;
+    padding: 10px;
+    margin: 20px;
+}
+
+/* Style for Weather Section */
+.weather h2 {
+    color: white;
+}
+
+#temp {
+    font-size: 50px;
+}
+
+.date-and-time {
+    margin: 5px 0;
+    font-size: 30px;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* TODO: add mobile formatting */

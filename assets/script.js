@@ -32,7 +32,8 @@ function searchCountry(searchTerm) {
         .then(response => response.json())
         .then(data => {
             countryData = parseCountry(data[0]);
-        });
+        })
+        .catch(err => console.error(err));
     
     
     return countryData;
@@ -59,20 +60,22 @@ function getWeather(capital) {
         .then(response => response.json())
         .then(data => {
              weatherSearchURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.capitalInfo.latlng[0]}&lon=${data.capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}`
-        });
+        })
+        .catch(err => console.error(err));
 
    
     fetch(weatherSearchURL)
         .then(response => response.json())
         .then(data => {
-        data = weatherAPIData;
-        weatherData.temp = data.current.temp;
-        weatherData.humidity = data.current.humidity;
-        weatherData.pressure = data.current.pressure;
-        weatherData.windSpeed = data.current.wind_speed;
-        weatherData.uvIndex = data.current.uvi;
-        weather.dataTime = data.current.dt;
-        });
+            data = weatherAPIData;
+            weatherData.temp = data.current.temp;
+            weatherData.humidity = data.current.humidity;
+            weatherData.pressure = data.current.pressure;
+            weatherData.windSpeed = data.current.wind_speed;
+            weatherData.uvIndex = data.current.uvi;
+            weather.dataTime = data.current.dt;
+        })
+        .catch(err => console.error(err));
 
     return weatherData;
 }

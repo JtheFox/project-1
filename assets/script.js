@@ -90,7 +90,7 @@ function getWeather(countryData) {
                         pressure: weatherData.current.pressure,
                         windSpeed: weatherData.current.wind_speed,
                         uvIndex: weatherData.current.uvi,
-                        dataTime: weatherData.current.dt
+                        dataTime: moment.unix(weatherData.current.dt).format("M/D/YYYY")
                     };
 
                     //If api calls are successful and data is valid, redirect user to results page
@@ -126,6 +126,7 @@ function parseCountry(data) {
 function displayCountry(data) {
     console.log(data)
     //Query Selector for display country info
+    var countryName = $("#country-name");
     var capital = $("#capital");
     var population = $("#population");
     var language = $("#language");
@@ -142,6 +143,7 @@ function displayCountry(data) {
     var pressure = $("#pressure");
 
     //Display each country content to html 
+    countryName.text(data.name);
     capital.text(data.capital);
     population.text(data.population);
     language.text(data.language);

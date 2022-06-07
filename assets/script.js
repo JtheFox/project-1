@@ -13,6 +13,7 @@ function randomCountry(maxPop) {
     fetch(restAllURL)
         .then(response =>response.json())
         .then(data =>{
+            console.log(data);
             // filter all countries by max population if a max was chosen
             if (maxPop) data = data.filter(country => country.population < maxPop);
             // pick random country from array of all (filtered) countries
@@ -31,6 +32,7 @@ function searchCountry(searchTerm) {
     fetch(restCountryURL)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             countryData = parseCountry(data[0]);
         })
         .catch(err => console.error(err));
@@ -52,6 +54,7 @@ function parseCountry(data) {
 }
 
 function getWeather(capital) {
+    console.log(capital);
     var weatherData = {};
     var weatherSearchURL = '';
     // get capital coords for weather search
@@ -59,6 +62,7 @@ function getWeather(capital) {
     fetch(restCapitalURL)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
              weatherSearchURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.capitalInfo.latlng[0]}&lon=${data.capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}`
         })
         .catch(err => console.error(err));
@@ -67,6 +71,7 @@ function getWeather(capital) {
     fetch(weatherSearchURL)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             data = weatherAPIData;
             weatherData.temp = data.current.temp;
             weatherData.humidity = data.current.humidity;
@@ -162,8 +167,8 @@ searchBtn.click(function() {
     if (Object.keys(countryData).length === 0) {
         modal.show();
     }
-
-    countryData.weather = getWeather(countryData.capital);
+    console.log(countryData.capital[0]);
+    countryData.weather = getWeather(countryData.capital[0]);
 
     //If api calls are successful and data is valid, redirect user to results page
     if (Object.keys(countryData.weather) > 0) {

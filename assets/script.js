@@ -113,14 +113,25 @@ function displayCountry(data) {
 // random country picker
 randomBtn.click(function(event) {
     var maxPop = maxPopSelect.val();
-     // get country data from REST Countries API
+
+     //Get country data from REST Countries API
      var countryData = randomCountry(maxPop);
-     // display error if no country data was found, return so the page doesn't redirect
-     // TODO: add checker to return and display error (not using alert()) if no data
-     countryData.weather = getWeather(countryData.capital);
-     // TODO: if api calls are successful and data is valid, redirect user to results page
-     // display country data on page
-     displayCountry(countryData);
+
+    //Check to see if country is found, if not found display error 
+    if (Object.keys(countryData).length === 0) {
+        modal.show();
+    }
+
+    //Get the country data weather information
+    countryData.weather = getWeather(countryData.capital);
+
+    //If api calls are successful and data is valid, redirect user to results page
+    if (Object.keys(countryData.weather) > 0) {
+        location.replace(results.html);
+    }
+
+    //Display country data on page
+    displayCountry(countryData);
 })
 
 // create event handler to allow user to press enter to search
@@ -135,15 +146,26 @@ searchText.on('keypress', function(event) {
 searchBtn.click(function() {
     var searchTerm = searchText.val();
     if (searchTerm.length === 0) {
-        // TODO: display error if search text is empty (not using alert())
+
+        //display error if search text is empty
+        modal.show();
         return;
     }
     // get country data from REST Countries API
     var countryData = searchCountry(searchTerm);
-    // display error if no country data was found, return so the page doesn't redirect
-    // TODO: add checker to return and display error (not using alert()) if no results found
+   
+    //Check to see if country is found, if not found display error 
+    if (Object.keys(countryData).length === 0) {
+        modal.show();
+    }
+
     countryData.weather = getWeather(countryData.capital);
-    // TODO: if api calls are successful and data is valid, redirect user to results page
+
+    //If api calls are successful and data is valid, redirect user to results page
+    if (Object.keys(countryData.weather) > 0) {
+        location.replace(results.html);
+    }
+    
     // display country data on page
     displayCountry(countryData);
 })

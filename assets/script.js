@@ -2,6 +2,7 @@ var randomBtn = $('.sw-randomBtn');
 var maxPopSelect = $("#maxPopulation");
 var searchBtn = $(".sw-searchBtn");
 var searchText = $(".sw-searchInput");
+var modal = new bootstrap.Modal(document.querySelector('.modal'), { keyboard: false });
 var weatherAPIKey = '';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
 

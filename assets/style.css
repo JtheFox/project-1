@@ -191,6 +191,11 @@ body {
     font-size: 1.1rem;
 }
 
+/* error modal */
+.modal-header, .modal-body {
+    color: #222;
+}
+
   /* Style for Demographics Section */
 .demographics, .weather {
     background: rgba(0, 0, 0, 0.5);
@@ -226,6 +231,7 @@ body {
     font-size: 30px;
 }
 
+/* footer */
 footer {
     background: rgba(0, 0, 0, 0.5);
     color: white;

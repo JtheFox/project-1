@@ -211,10 +211,17 @@ body {
     border-bottom: 2px solid white;
 }
 
+.card-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .card {
     width: 220px;
     padding: 10px;
     margin: 20px;
+    height: 160px;
     border: 2px solid black;
 }
 
@@ -225,7 +232,6 @@ body {
 #country-name {
     color: white;
     background: rgba(0, 0, 0, 0.5);
-    margin: 0 500px;
     padding: 20px 0;
     font-size: 60px;
     border: 2px solid white;
@@ -261,4 +267,49 @@ footer {
     padding: 20px;
 }
 
-/* TODO: add mobile formatting */
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .demographics, .weather {
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .weather {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .demo-headings {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+
+    /* Style the demographics section */
+    #flag {
+        width: 300px;
+    }
+
+    .demographics, .weather {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .weather {
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+
+    .card-flex { 
+        flex-direction: column;
+    }
+
+    .demo-headings {
+        font-size: 20px;
+    }
+}

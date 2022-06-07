@@ -142,9 +142,9 @@ function displayCountry(data, weather) {
     continents.text(data.continents);
     //Display each weather content to html
     dateAndTime.text(weather.dataTime);
-    temperature.text(weather.temp);
-    windSpeed.text(weather.windSpeed);
-    humidity.text(weather.humidity);
+    temperature.text(`${weather.temp} \u2109`);
+    windSpeed.text(`${weather.windSpeed} MPH`);
+    humidity.text(`${weather.humidity}%`);
     uvIndex.text(weather.uvIndex);
     pressure.text(weather.pressure);
 }

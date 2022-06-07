@@ -2,9 +2,10 @@ var randomBtn = $('.sw-randomBtn');
 var maxPopSelect = $("#maxPopulation");
 var searchBtn = $(".sw-searchBtn");
 var searchText = $(".sw-searchInput");
-var newSearchBtn = $('.sw-newSearch')
+var newSearchBtn = $('.sw-newSearch');
+var footer = $("footer");
 var searchState = $('.sw-search');
-var resultsState = $('.sw-results')
+var resultsState = $('.sw-results');
 var modal = new bootstrap.Modal($('.modal')[0], { keyboard: false });
 var weatherAPIKey = 'f8bd4d0f6f0c65783299bae01aa1f960';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
@@ -25,10 +26,12 @@ function displayState(state) {
     if (state === 'search') {
         resultsState.hide();
         newSearchBtn.hide();
+        footer.hide();
         searchState.show();
     } else if (state === 'results') {
         searchState.hide();
         resultsState.show();
+        footer.show();
         newSearchBtn.show();
     } else console.error('Invalid display state')
 }

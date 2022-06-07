@@ -28,6 +28,12 @@ function displayState() {
     newSearchBtn.show();
 }
 
+function storeCountry(country) {
+    var savedSearch = localStorage.getItem("savedSearch") || "";
+    savedSearch += savedSearch.length === 0 ? `${country}` : `,${country}`;
+    localStorage.setItem("savedSearch", savedSearch);
+}
+
 function randomCountry(maxPop) {
     console.log('Getting random country')
     var countryData = {};
@@ -63,7 +69,7 @@ function searchCountry(searchTerm) {
             if (Object.keys(countryData).length === 0) {
                 if (modal) return modal.show();
             }
-
+            storeCountry(countryData.name);
             getWeather(countryData);
         })
         .catch(err => console.error(err));
@@ -81,12 +87,12 @@ function getWeather(countryData) {
         .then(capitalData => {
             console.log(capitalData);
             var capitalInfo = capitalData[0].capitalInfo;
-            var weatherSearchURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${capitalInfo.latlng[0]}&lon=${capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}`
+            var weatherSearchURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${capitalInfo.latlng[0]}&lon=${capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}&units=imperial`
 
             fetch(weatherSearchURL)
                 .then(response => response.json())
                 .then(weatherData => {
-                    countryData.weather = {
+                    var weather = {
                         temp: weatherData.current.temp,
                         humidity: weatherData.current.humidity,
                         pressure: weatherData.current.pressure,
@@ -96,7 +102,7 @@ function getWeather(countryData) {
                     };
 
                     // display country data on page
-                    displayCountry(countryData);
+                    displayCountry(countryData, weather);
                     displayState();
                 })
                 .catch(err => console.error(err));
@@ -109,6 +115,7 @@ function parseCountry(data) {
     // return an object with only the data being used for display
     return {
         name: data.name.common,
+        flag: data.flags.svg,
         capital: data.capital[0],
         language: Object.values(data.languages).join(', '),
         timeZones: data.timezones,
@@ -120,10 +127,11 @@ function parseCountry(data) {
 }
 
 
-function displayCountry(data) {
+function displayCountry(data, weather) {
     console.log(data)
     //Query Selector for display country info
     var countryName = $("#country-name");
+    var flag = $("#flag");
     var capital = $("#capital");
     var population = $("#population");
     var language = $("#language");
@@ -141,6 +149,7 @@ function displayCountry(data) {
 
     //Display each country content to html 
     countryName.text(data.name);
+    flag.attr("src", data.flag);
     capital.text(data.capital);
     population.text(data.population);
     language.text(data.language);
@@ -149,12 +158,12 @@ function displayCountry(data) {
     continents.text(data.continents);
 
     //Display each weather content to html
-    dateAndTime.text(data.dataTime);
-    temperature.text(data.temp);
-    windSpeed.text(data.windSpeed);
-    humidity.text(data.humidity);
-    uvIndex.text(data.uvIndex);
-    pressure.text(data.pressure);
+    dateAndTime.text(weather.dataTime);
+    temperature.text(weather.temp);
+    windSpeed.text(weather.windSpeed);
+    humidity.text(weather.humidity);
+    uvIndex.text(weather.uvIndex);
+    pressure.text(weather.pressure);
 }
 
 // random country picker

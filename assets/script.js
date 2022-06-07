@@ -74,6 +74,8 @@ function getWeather(countryData) {
     var capital = countryData.capital;
     // get capital coords for weather search
     var restCapitalURL = `https://restcountries.com/v3.1/capital/${capital}`
+
+    //Fetch the weather url 
     fetch(restCapitalURL)
         .then(response => response.json())
         .then(capitalData => {
@@ -90,13 +92,8 @@ function getWeather(countryData) {
                         pressure: weatherData.current.pressure,
                         windSpeed: weatherData.current.wind_speed,
                         uvIndex: weatherData.current.uvi,
-                        dataTime: weatherData.current.dt
+                        dataTime: moment.unix(weatherData.current.dt).format("M/D/YYYY")
                     };
-
-                    //If api calls are successful and data is valid, redirect user to results page
-                    // if (Object.keys(searchData).length > 0) {
-                    //     location.replace('results.html');
-                    // }
 
                     // display country data on page
                     displayCountry(countryData);
@@ -116,7 +113,7 @@ function parseCountry(data) {
         language: Object.values(data.languages).join(', '),
         timeZones: data.timezones,
         population: data.population,
-        continent: data.continent,
+        continents: data.continents.join(", "),
         //TODO: add all currencies
         currency: Object.values(data.currencies)[0].name
     }
@@ -126,12 +123,13 @@ function parseCountry(data) {
 function displayCountry(data) {
     console.log(data)
     //Query Selector for display country info
+    var countryName = $("#country-name");
     var capital = $("#capital");
     var population = $("#population");
     var language = $("#language");
     var currency = $("#currency");
     var timeZone = $("#time-zone");
-    var contients = $("#contients");
+    var continents = $("#continents");
 
     //Query Selector for weather info 
     var dateAndTime = $("#date-time");
@@ -142,12 +140,13 @@ function displayCountry(data) {
     var pressure = $("#pressure");
 
     //Display each country content to html 
+    countryName.text(data.name);
     capital.text(data.capital);
     population.text(data.population);
     language.text(data.language);
     currency.text(data.currency);
     timeZone.text(data.timeZones);
-    contients.text(data.contients);
+    continents.text(data.continents);
 
     //Display each weather content to html
     dateAndTime.text(data.dataTime);

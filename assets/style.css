@@ -259,17 +259,38 @@ ul li:hover {
     border-bottom: 2px solid black;
 }
 
+.saved-country {
+    text-align: center;
+    color: white;
+    font-size: 35px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.saved-country:hover {
+    color: red;
+    cursor: pointer;
+}
+
 .search-name {
     margin: 0 20px;
 }
-
-#country-name {
+.country-content {
     color: white;
     background: rgba(0, 0, 0, 0.5);
     padding: 20px 0;
     font-size: 60px;
     border: 2px solid white;
     border-radius: 10px;
+}
+
+.country-content button {
+    margin-left: 20px;
 }
 
 #flag {

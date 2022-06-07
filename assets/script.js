@@ -5,27 +5,32 @@ var searchText = $(".sw-searchInput");
 var newSearchBtn = $('.sw-newSearch')
 var searchState = $('.sw-search');
 var resultsState = $('.sw-results')
-var modalEl = $('.modal')[0];
-if (modalEl) {
-    var modal = new bootstrap.Modal(modalEl, { keyboard: false });
-}
+var modal = new bootstrap.Modal($('.modal')[0], { keyboard: false });
 var weatherAPIKey = 'f8bd4d0f6f0c65783299bae01aa1f960';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
 
-$(function() {
-    landingState();
+// on load
+$(function () {
+    // set search state
+    displayState('search');
 })
 
-function landingState() {
-    resultsState.hide();
-    newSearchBtn.hide();
-    searchState.show();
+function error(error) {
+    // log error in console then show error modalmic
+    console.error(error);
+    modal.show();
 }
 
-function displayState() {
-    searchState.hide();
-    resultsState.show();
-    newSearchBtn.show();
+function displayState(state) {
+    if (state === 'search') {
+        resultsState.hide();
+        newSearchBtn.hide();
+        searchState.show();
+    } else if (state === 'results') {
+        searchState.hide();
+        resultsState.show();
+        newSearchBtn.show();
+    } else console.error('Invalid display state')
 }
 
 function storeCountry(country) {
@@ -35,60 +40,45 @@ function storeCountry(country) {
 }
 
 function randomCountry(maxPop) {
-    console.log('Getting random country')
-    var countryData = {};
     // get array of all countries from api
     var restAllURL = `${restCountryDomain}all`
     fetch(restAllURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             // filter all countries by max population if a max was chosen
-            if (maxPop) data = data.filter(country => country.population < maxPop);
+            var filtered = maxPop > 0 ? data.filter(country => country.population < maxPop) : data;
             // pick random country from array of all (filtered) countries
-            var randCountry = data[Math.floor(Math.random() * data.length)];
-            countryData = parseCountry[randCountry];
-        })
-        .catch(err => console.error(err));
-
-    return countryData;
+            var randCountry = filtered[Math.floor(Math.random() * filtered.length)];
+            var countryData = parseCountry(randCountry);
+            storeCountry(countryData.name);
+            getWeather(countryData);
+        }).catch(err => error(err));
 }
 
 function searchCountry(searchTerm) {
-    console.log('Searching country')
     // call REST Countries api to search by name
     var restCountryURL = `${restCountryDomain}name/${searchTerm}`
     fetch(restCountryURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             var countryData = parseCountry(data[0]);
-            console.log(countryData)
-
             //Check to see if country is found, if not found display error 
-            if (Object.keys(countryData).length === 0) {
-                if (modal) return modal.show();
-            }
+            if (!countryData.name) return modal.show();
             storeCountry(countryData.name);
             getWeather(countryData);
-        })
-        .catch(err => console.error(err));
+        }).catch(err => error(err));
 }
 
 function getWeather(countryData) {
-    console.log('Getting capital');
     var capital = countryData.capital;
     // get capital coords for weather search
     var restCapitalURL = `https://restcountries.com/v3.1/capital/${capital}`
-
     //Fetch the weather url 
     fetch(restCapitalURL)
         .then(response => response.json())
         .then(capitalData => {
-            console.log(capitalData);
             var capitalInfo = capitalData[0].capitalInfo;
             var weatherSearchURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${capitalInfo.latlng[0]}&lon=${capitalInfo.latlng[1]}&exclude=daily,minutely,hourly&appid=${weatherAPIKey}&units=imperial`
-
             fetch(weatherSearchURL)
                 .then(response => response.json())
                 .then(weatherData => {
@@ -100,18 +90,15 @@ function getWeather(countryData) {
                         uvIndex: weatherData.current.uvi,
                         dataTime: moment.unix(weatherData.current.dt).format("M/D/YYYY")
                     };
-
                     // display country data on page
                     displayCountry(countryData, weather);
-                    displayState();
+                    displayState('results');
                 })
-                .catch(err => console.error(err));
-        })
-        .catch(err => console.error(err));
+                .catch(err => error(err));
+        }).catch(err => error(err));
 }
 
 function parseCountry(data) {
-    console.log('Parsing country data')
     // return an object with only the data being used for display
     return {
         name: data.name.common,
@@ -128,7 +115,6 @@ function parseCountry(data) {
 
 
 function displayCountry(data, weather) {
-    console.log(data)
     //Query Selector for display country info
     var countryName = $("#country-name");
     var flag = $("#flag");
@@ -138,7 +124,6 @@ function displayCountry(data, weather) {
     var currency = $("#currency");
     var timeZone = $("#time-zone");
     var continents = $("#continents");
-
     //Query Selector for weather info 
     var dateAndTime = $("#date-time");
     var temperature = $("#temp");
@@ -146,7 +131,6 @@ function displayCountry(data, weather) {
     var humidity = $("#humidity");
     var uvIndex = $("#uv-index");
     var pressure = $("#pressure");
-
     //Display each country content to html 
     countryName.text(data.name);
     flag.attr("src", data.flag);
@@ -156,7 +140,6 @@ function displayCountry(data, weather) {
     currency.text(data.currency);
     timeZone.text(data.timeZones);
     continents.text(data.continents);
-
     //Display each weather content to html
     dateAndTime.text(weather.dataTime);
     temperature.text(weather.temp);
@@ -169,26 +152,8 @@ function displayCountry(data, weather) {
 // random country picker
 randomBtn.click(function (event) {
     var maxPop = maxPopSelect.val();
-
-    //Get country data from REST Countries API
-    var countryData = randomCountry(maxPop);
-
-    //Check to see if country is found, if not found display error 
-    if (Object.keys(countryData).length === 0) {
-        if (modal) modal.show();
-    }
-
-    //Get the country data weather information
-    countryData.weather = getWeather(countryData.capital);
-
-    //If api calls are successful and data is valid, redirect user to results page
-    if (Object.keys(countryData.weather) > 0) {
-        location.replace(results.html);
-    }
-
-    //Display country data on page
-    displayCountry(countryData);
-})
+    randomCountry(maxPop);
+});
 
 // create event handler to allow user to press enter to search
 searchText.on('keypress', function (event) {
@@ -196,21 +161,16 @@ searchText.on('keypress', function (event) {
         event.preventDefault();
         searchBtn.click();
     }
-})
+});
 
 // country search
 searchBtn.click(function () {
     var searchTerm = searchText.val();
     searchText.val('');
-    if (searchTerm.length === 0) {
-        //display error if search text is empty
-        if (modal) modal.show();
-        return;
-    }
+    if (searchTerm.length === 0) return modal.show();
     // get country data from REST Countries API
     searchCountry(searchTerm);
-})
+});
 
-newSearchBtn.click(function() {
-    landingState();
-})
+// return to search state
+newSearchBtn.click(function () { displayState('search') });

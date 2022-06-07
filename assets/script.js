@@ -28,6 +28,12 @@ function displayState() {
     newSearchBtn.show();
 }
 
+function storeCountry(country) {
+    var savedSearch = localStorage.getItem("savedSearch") || "";
+    savedSearch += savedSearch.length === 0 ? `${country}` : `,${country}`;
+    localStorage.setItem("savedSearch", savedSearch);
+}
+
 function randomCountry(maxPop) {
     console.log('Getting random country')
     var countryData = {};
@@ -63,7 +69,7 @@ function searchCountry(searchTerm) {
             if (Object.keys(countryData).length === 0) {
                 if (modal) return modal.show();
             }
-
+            storeCountry(countryData.name);
             getWeather(countryData);
         })
         .catch(err => console.error(err));

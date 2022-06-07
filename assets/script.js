@@ -3,7 +3,7 @@ var maxPopSelect = $("#maxPopulation");
 var searchBtn = $(".sw-searchBtn");
 var searchText = $(".sw-searchInput");
 var modal = new bootstrap.Modal(document.querySelector('.modal'), { keyboard: false });
-var weatherAPIKey = '';
+var weatherAPIKey = 'f8bd4d0f6f0c65783299bae01aa1f960';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
 
 function randomCountry(maxPop) {
@@ -165,7 +165,7 @@ searchBtn.click(function() {
     if (Object.keys(countryData.weather) > 0) {
         location.replace(results.html);
     }
-    
+
     // display country data on page
     displayCountry(countryData);
 })

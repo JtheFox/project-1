@@ -6,7 +6,7 @@ var newSearchBtn = $('.sw-newSearch');
 var footer = $("footer");
 var searchState = $('.sw-search');
 var resultsState = $('.sw-results');
-var modal = new bootstrap.Modal($('.modal')[0], { keyboard: false });
+var errorModal = new bootstrap.Modal($('.errorModal')[0], { keyboard: false });
 var weatherAPIKey = 'f8bd4d0f6f0c65783299bae01aa1f960';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
 
@@ -19,7 +19,7 @@ $(function () {
 function error(error) {
     // log error in console then show error modalmic
     console.error(error);
-    modal.show();
+    errorModal.show();
 }
 
 function displayState(state) {
@@ -66,7 +66,7 @@ function searchCountry(searchTerm) {
         .then(data => {
             var countryData = parseCountry(data[0]);
             //Check to see if country is found, if not found display error 
-            if (!countryData.name) return modal.show();
+            if (!countryData.name) return errorModal.show();
             storeCountry(countryData.name);
             getWeather(countryData);
         }).catch(err => error(err));
@@ -108,9 +108,9 @@ function parseCountry(data) {
         flag: data.flags.svg,
         capital: data.capital[0],
         language: Object.values(data.languages).join(', '),
-        timeZones: data.timezones,
-        population: data.population,
-        continents: data.continents.join(", "),
+        timeZones: data.timezones.join(', '),
+        population: data.population.toLocaleString(),
+        continent: data.continents.join(", "),
         //TODO: add all currencies
         currency: Object.values(data.currencies)[0].name
     }
@@ -126,14 +126,14 @@ function displayCountry(data, weather) {
     var language = $("#language");
     var currency = $("#currency");
     var timeZone = $("#time-zone");
-    var continents = $("#continents");
+    var continent = $("#continent");
     //Query Selector for weather info 
+    var capitalWeather = $('#capitalWeather');
     var dateAndTime = $("#date-time");
     var temperature = $("#temp");
     var windSpeed = $("#wind");
     var humidity = $("#humidity");
     var uvIndex = $("#uv-index");
-    var pressure = $("#pressure");
     //Display each country content to html 
     countryName.text(data.name);
     flag.attr("src", data.flag);
@@ -142,14 +142,14 @@ function displayCountry(data, weather) {
     language.text(data.language);
     currency.text(data.currency);
     timeZone.text(data.timeZones);
-    continents.text(data.continents);
+    continent.text(data.continent);
     //Display each weather content to html
+    capitalWeather.text(data.capital);
     dateAndTime.text(weather.dataTime);
-    temperature.text(`${weather.temp} \u2109`);
+    temperature.text(`${weather.temp} °F`);
     windSpeed.text(`${weather.windSpeed} MPH`);
     humidity.text(`${weather.humidity}%`);
     uvIndex.text(weather.uvIndex);
-    pressure.text(weather.pressure);
 }
 
 // random country picker
@@ -170,7 +170,7 @@ searchText.on('keypress', function (event) {
 searchBtn.click(function () {
     var searchTerm = searchText.val();
     searchText.val('');
-    if (searchTerm.length === 0) return modal.show();
+    if (searchTerm.length === 0) return;
     // get country data from REST Countries API
     searchCountry(searchTerm);
 });

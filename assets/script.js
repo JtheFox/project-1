@@ -30,9 +30,8 @@ function displayState(state) {
         searchState.show();
         // display recent searches
         recents.html('');
-        recents.append('<option value="none" selected disabled hidden>Recent</option>');
+        recents.append('<option value="none" selected disabled hidden>Recent Searches</option>');
         var searches = localStorage.getItem('savedSearch').split(',');
-        console.log(searches)
         if (searches.length > 0) searches.forEach(country => recents.append(`<option value="${country}">${country}</option>`));
     } else if (state === 'results') {
         // hide search elements and display results elements

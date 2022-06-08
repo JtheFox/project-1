@@ -72,7 +72,7 @@ body {
     margin: 1rem auto 2rem;
 }
 
-.sw-genCriteria select {
+.sw-genCriteria select, .sw-recents {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@ body {
     text-align: center;
 }
 
-.sw-genCriteria select > option {
+:is(.sw-genCriteria select, .sw-recents) > option {
     background: rgba(0, 0, 0, 0.9);
     color: white;
     font-size: 0.8rem;
@@ -135,7 +135,7 @@ body {
     background-color: black;
 }
 
-:is(#maxPopulation, .sw-searchInput):focus, .sw-searchInput:focus + .sw-searchBtn {
+:is(#maxPopulation, .sw-searchInput, .sw-recents):focus, .sw-searchInput:focus + .sw-searchBtn {
     border: none;
     outline: 0.1em solid white;
     box-shadow: 0 0 0.5em white;

@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Somewhere.</title>
-</head>
-<body>
+  </head>
+  <body>
+
+    <!--Header Section-->
     <header class="sw-header">
-        <h1>Somewhere.</h1>
-        <button class="sw-newSearch">New Search</button>
+      <h1>Somewhere.</h1>
+      <button class="sw-newSearch">New Search</button>
     </header>
+
+    <!--Main Section-->
     <main>
+
+        <!--Section for user to search or generate a button-->
         <section class="sw-search">
             <button class="sw-randomBtn">Take Me Somewhere.</button>
-            <div class="sw-genCriteria">With
+            <div class="sw-genCriteria">
+                With
                 <select name="maxPopulation" id="maxPopulation">
                     <option value="0">Any</option>
                     <option value="50000000">&lt; 50 Million</option>
@@ -31,18 +39,30 @@
                     <option value="5000000">&lt; 5 Million</option>
                     <option value="1000000">&lt; 1 Million</option>
                 </select>
-            Population</div>
+                Population
+            </div>
+
+            <!--Input for searching a city-->
             <div class="sw-searchBar">
-                <input type="text" class="sw-searchInput" placeholder="Go Somewhere Specific.">
+                <input type="text" class="sw-searchInput" placeholder="Go Somewhere Specific."/>
                 <div class="sw-searchBtn"></div>
             </div>
-            <div class="sw-tooltip">What is this?
+
+            <!--ToolTip Section-->
+            <div class="sw-tooltip">
+                What is this?
                 <span class="sw-tooltiptext">
-                    <span class="sw-tooltiptitle">Take yourself on a journey.</span><br><br>
-                    Click the big button to visit a random country- if you'd rather be taken somewhere smaller, change the max population size with the dropdown.<br><br>
-                    If you already have a country in mind you wish to visit, use the search bar to direct your journey to s a specific country.
+                    <span class="sw-tooltiptitle">Take yourself on a journey.</span
+                    ><br /><br />
+                    Click the big button to visit a random country- if you'd rather be
+                    taken somewhere smaller, change the max population size with the
+                    dropdown.<br /><br />
+                    If you already have a country in mind you wish to visit, use the
+                    search bar to direct your journey to s a specific country.
                 </span>
             </div>
+
+            <!--Modal for errors-->
             <div class="modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -51,7 +71,7 @@
                             <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           <p>There was an error with your request.</p>
+                            <p>There was an error with your request.</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -59,96 +79,120 @@
                     </div>
                 </div>
             </div>
+
+            <!--Save city name to this section-->
+            <div class="saved-search">
+                <h2 class="text-center">Saved Searches</h2>
+
+                <div class="list-searches">
+                    <ul class="search-list">
+                        <li>Hello</li>
+                        <li>Hello</li>
+                        <li>Hello</li>
+                        <li>Hello</li>
+                    </ul>
+                </div>
+            </div>
         </section>
+
+        <!--Section to show the results when input or button been clicked-->
         <section class="sw-results">
+
             <!--Country Name and Flag-->
-        <div class="mt-4">
-            <h2 class="text-center" id="country-name"></h2>
-            <img id="flag" width="200px" height="auto">
-        </div>
-
-        <!--Demographics Section-->
-        <div class="demographics">
-            <h2 class="text-center">Demographics</h2>
-
-            <!--Card Content for the demographics sections-->
-            <div class="d-flex justify-content-around aligns-item-center">
-                <div class="card text-center">
-                    <h4 class="demo-headings">Capital</h4>
-                    <p id="capital"></p>
+            <div class="mt-4 search-name">
+                <div class="country-content d-flex justify-content-center align-items-center">
+                    <h2 class="text-center" id="country-name"></h2>
+                    <button class="saved-country"><i class="fa-solid fa-heart"></i></button>
                 </div>
 
-                <div class="card text-center">
-                    <h4 class="demo-headings">Population</h4>
-                    <p id="population"></p>
+                <img id="flag" />
+            </div>
+
+            <!--Demographics Section-->
+            <div class="demographics">
+                <h2 class="text-center">Demographics</h2>
+
+                <!--Card Content for the demographics sections-->
+                <div class="card-flex">
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Capital</h4>
+                        <p id="capital"></p>
+                    </div>
+
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Population</h4>
+                        <p id="population"></p>
+                    </div>
+
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Language</h4>
+                        <p id="language"></p>
+                    </div>
                 </div>
 
-                <div class="card text-center">
-                    <h4 class="demo-headings">Language</h4>
-                    <p id="language"></p>
-                </div>
-            </div>  
+                <!--Card Content for the demographics sections-->
+                <div class="card-flex">
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Currency</h4>
+                        <p id="currency"></p>
+                    </div>
 
-            <!--Card Content for the demographics sections-->
-            <div class="d-flex justify-content-around aligns-item-center">
-                <div class="card text-center">
-                    <h4 class="demo-headings">Currency</h4>
-                    <p id="currency"></p>
-                </div>
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Region</h4>
+                        <p id="time-zone"></p>
+                    </div>
 
-                <div class="card text-center">
-                    <h4 class="demo-headings">Region</h4>
-                    <p id="time-zone"></p>
-                </div>
-
-                <div class="card text-center">
-                    <h4 class="demo-headings">Continents</h4>
-                    <p id="continents"></p>
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Continents</h4>
+                        <p id="continents"></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!--Weather Section-->
-        <div class="weather">
-            <h2 class="text-center">Current Weather</h2>
+            <!--Weather Section-->
+            <div class="weather">
+                <h2 class="text-center">Current Weather</h2>
 
-            <!--Date, Time, and Temperature Section-->
-            <div class="date-and-time d-flex justify-content-center aligns-item-center">
-                <p id="date-time" class="text-light"><span id="time"></span></p>
+                <!--Date, Time, and Temperature Section-->
+                <div class="card-flex">
+                    <p id="date-time" class="text-light"><span id="time"></span></p>
+                </div>
+
+                <p id="temp" class="text-center text-light"></p>
+
+                <!--Weather Content-->
+                <div class="card-flex">
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Wind</h4>
+                        <p id="wind"></p>
+                    </div>
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Humidity</h4>
+                        <p id="humidity"></p>
+                    </div>
+                    <div class="card text-center">
+                        <h4 class="demo-headings">UV Index</h4>
+                        <p id="uv-index"></p>
+                    </div>
+                    <div class="card text-center">
+                        <h4 class="demo-headings">Pressure</h4>
+                        <p id="pressure"></p>
+                    </div>
+                </div>
             </div>
-            <p id="temp" class="text-center text-light"></p>
-
-            <!--Weather Content-->
-            <div class="d-flex justify-content-around aligns-item-center">
-                <div class="card text-center">
-                    <h4>Wind Speed</h4>
-                    <p id="wind"></p>
-                </div>
-                <div class="card text-center">
-                    <h4>Humidity</h4>
-                    <p id="humidity"></p>
-                </div>
-                <div class="card text-center">
-                    <h4>UV Index</h4>
-                    <p id="uv-index"></p>
-                </div>
-                <div class="card text-center">
-                    <h4>Pressure</h4>
-                    <p id="pressure"></p>
-                </div>
-            </div>
-        </div>
-        </section>
+      </section>
     </main>
 
+    <!--Footer Section-->
     <footer>
         <p class="text-center">@2022 Created by Jason Fox | Harrison Hayes | Vanessa Liaw</p>
-        <!-- TODO: add pexels credit https://www.pexels.com/api/documentation/#guidelines -->
+        <p class="text-center credit">Photo credits: <a href="https://www.pexels.com/api/documentation/#guidelines">Pexels</a></p>
     </footer>
 
+    <!--Script Section-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="assets/script.js"></script>
-</body>
+  </body>
 </html>

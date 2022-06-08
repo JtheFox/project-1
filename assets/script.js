@@ -26,12 +26,10 @@ function displayState(state) {
     if (state === 'search') {
         resultsState.hide();
         newSearchBtn.hide();
-        footer.hide();
         searchState.show();
     } else if (state === 'results') {
         searchState.hide();
         resultsState.show();
-        footer.show();
         newSearchBtn.show();
     } else console.error('Invalid display state')
 }

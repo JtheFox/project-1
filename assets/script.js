@@ -3,7 +3,7 @@ var maxPopSelect = $("#maxPopulation");
 var searchBtn = $(".sw-searchBtn");
 var searchText = $(".sw-searchInput");
 var newSearchBtn = $('.sw-newSearch');
-var footer = $("footer");
+var recents = $('.sw-recents');
 var searchState = $('.sw-search');
 var resultsState = $('.sw-results');
 var errorModal = new bootstrap.Modal($('.errorModal')[0], { keyboard: false });
@@ -16,30 +16,41 @@ $(function () {
     displayState('search');
 })
 
-function error(error) {
-    // log error in console then show error modalmic
-    console.error(error);
+function error(err) {
+    // log error in console then show error modal
+    console.error(err);
     errorModal.show();
 }
 
 function displayState(state) {
     if (state === 'search') {
+        // hide results elements and display search elements
         resultsState.hide();
         newSearchBtn.hide();
-        footer.hide();
         searchState.show();
+        // display recent searches
+        recents.html('');
+        recents.append('<option value="none" selected disabled hidden>Recent Searches</option>');
+        var searches = localStorage.getItem('savedSearch').split(',');
+        if (searches.length > 0) searches.forEach(country => recents.append(`<option value="${country}">${country}</option>`));
     } else if (state === 'results') {
+        // hide search elements and display results elements
         searchState.hide();
         resultsState.show();
-        footer.show();
         newSearchBtn.show();
-    } else console.error('Invalid display state')
+    } else console.error('Invalid display state');
 }
 
 function storeCountry(country) {
-    var savedSearch = localStorage.getItem("savedSearch") || "";
-    savedSearch += savedSearch.length === 0 ? `${country}` : `,${country}`;
-    localStorage.setItem("savedSearch", savedSearch);
+    // get saved searches from localStorage
+    var savedSearch = localStorage.getItem("savedSearch") || [];
+    if (savedSearch.length > 0) savedSearch = savedSearch.split(',');
+    // add new search to list
+    savedSearch.unshift(country);
+    // only save the 5 most recent searches, user filter to remove older duplicate entries
+    var newSavedSearch = savedSearch.filter(((c, i) => { return savedSearch.indexOf(c) === i })).slice(0, 5).join(',');
+    // update localStorage
+    localStorage.setItem("savedSearch", newSavedSearch);
 }
 
 function randomCountry(maxPop) {
@@ -53,7 +64,9 @@ function randomCountry(maxPop) {
             // pick random country from array of all (filtered) countries
             var randCountry = filtered[Math.floor(Math.random() * filtered.length)];
             var countryData = parseCountry(randCountry);
+            // store country name is localStorage
             storeCountry(countryData.name);
+            // get weather in the capital
             getWeather(countryData);
         }).catch(err => error(err));
 }
@@ -111,11 +124,9 @@ function parseCountry(data) {
         timeZones: data.timezones.join(', '),
         population: data.population.toLocaleString(),
         continent: data.continents.join(", "),
-        //TODO: add all currencies
-        currency: Object.values(data.currencies)[0].name
+        currency: Object.values(data.currencies).map(c => c.name).join(', ')
     }
 }
-
 
 function displayCountry(data, weather) {
     //Query Selector for display country info
@@ -168,6 +179,7 @@ searchText.on('keypress', function (event) {
 
 // country search
 searchBtn.click(function () {
+    // get text in search bar
     var searchTerm = searchText.val();
     searchText.val('');
     if (searchTerm.length === 0) return;
@@ -177,3 +189,8 @@ searchBtn.click(function () {
 
 // return to search state
 newSearchBtn.click(function () { displayState('search') });
+
+// autofill search bar when a recent search is selected
+recents.on('change', function () {
+    searchText.val(recents.val());
+});

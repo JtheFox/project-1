@@ -6,6 +6,9 @@
 }
 
 body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     background-attachment: fixed, fixed;
@@ -15,6 +18,7 @@ body {
     background-size: cover, cover;
 }
 
+/* header */
 .sw-header {
     display: flex;
     align-items: baseline;
@@ -31,6 +35,30 @@ body {
     margin-bottom: 0;
 }
 
+/* new search button in header */
+.sw-newSearch {
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    margin-right: 0.75rem;
+    border-radius: 0.15rem;
+    align-self: center;
+    transition: all 0.1s;
+}
+
+.sw-newSearch:is(:hover, :focus) {
+    background: rgba(255, 255, 255, 0.25);
+    outline: none;
+    box-shadow: 0 0 0.3rem white;
+}
+
+.sw-newSearch:active {
+    transform: translateY(0.05rem);
+}
+
+/* begin search state */
 /* main content container */
 .sw-search {
     display: flex;
@@ -72,7 +100,7 @@ body {
     margin: 1rem auto 2rem;
 }
 
-.sw-genCriteria select {
+.sw-genCriteria select, .sw-recents {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +115,7 @@ body {
     text-align: center;
 }
 
-.sw-genCriteria select > option {
+:is(.sw-genCriteria select, .sw-recents) > option {
     background: rgba(0, 0, 0, 0.9);
     color: white;
     font-size: 0.8rem;
@@ -99,6 +127,7 @@ body {
 }
 
 .sw-searchInput {
+    width: 20rem;
     padding-right: 0.5em;
     padding-left: 1em;
     border: 0.05rem solid gray;
@@ -117,7 +146,7 @@ body {
     width: 2.5rem;
     padding: 1rem;
     border-radius: 0 2rem 2rem 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(66, 66, 66, 0.7);
     background-image: url(./images/search-submit.png);
     background-position: 45% 55%;
     background-repeat: no-repeat;
@@ -135,7 +164,7 @@ body {
     background-color: black;
 }
 
-:is(#maxPopulation, .sw-searchInput):focus, .sw-searchInput:focus + .sw-searchBtn {
+:is(#maxPopulation, .sw-searchInput, .sw-recents):focus, .sw-searchInput:focus + .sw-searchBtn {
     border: none;
     outline: 0.1em solid white;
     box-shadow: 0 0 0.5em white;
@@ -151,7 +180,7 @@ body {
     user-select: none;
 }
 
-:is(.sw-tooltip, .sw-favorite):hover {
+:is(.sw-tooltip):hover {
     cursor: help;
 }
 
@@ -187,39 +216,9 @@ body {
 .modal *:not(button) {
     background-color: #efefef;
 }
-
-/* Style for saved search */
-.saved-search {
-    margin-top: 50px;
-    padding: 25px 25px 15px 25px;
-    border: 2px solid white;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.saved-search h2 {
-    border-bottom: 2px solid white;
-}
-
-ul {
-    margin-top: 30px;
-    background-color:white;
-    color: black;
-    list-style-type: none;
-    text-align: start;
-}
-
-ul li {
-   position: relative; 
-   left: -25px; 
-   cursor: pointer;
-}
-
-ul li:hover {
-    color: green;
-}
 /* end search state style */
-/* results state style */
+
+/* begin results state style */
 /* country name and flag display */
 .nameFlag {
     display: flex;
@@ -270,58 +269,54 @@ p.demo-headings {
 #capitalWeather {
     font-size: inherit;
 }
+/* end results state style */
+
+/* expandable div to position footer */
+.expandable {
+    flex-grow: 1;
+}
 
 /* footer */
 footer {
-    margin-top: 4rem;
-    padding: 20px;
+    font-size: 0.5rem;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.75rem;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
     color: white;
 }
 
 /* Media Queries */
-@media only screen and (max-width: 800px) {
-
-    /* Style Demographics Section */
-    .demographics, .weather {
-        margin: 0 auto;
-    }
-
-    /* Style Weather Section */
-    .weather {
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-} 
-
 @media only screen and (max-width: 768px) {
-
-    /* Style the Demographics Section */
-    .demographics, .weather {
-        margin: 0 auto;
-    }
-
-    /* Style Weather Section */
-    .weather {
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-}
-
-@media only screen and (max-width: 680px) {
-
     /* Style the header section */
     .sw-header {
         display: flex; 
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 0.25rem;
     }
 
-    .sw-header h1 {
-        padding-bottom: 10px;
+    /* new search button */
+    .sw-newSearch {
+        font-size: 0.9rem;
+        margin: 0.25rem auto 0;
+        padding: 0.1rem inherit;
+    }
+
+     /* search bar */
+     .sw-searchInput {
+        width: 12rem;
+    }
+
+    /* tooltip */
+    .sw-tooltiptext {
+        top: -1050% !important;
+        left: -95% !important;
+        width: 15rem !important;
+        font-size: 0.75rem;
     }
 
     /* Style Demographics Section */
@@ -333,21 +328,5 @@ footer {
     .weather {
         margin-top: 50px;
         margin-bottom: 40px;
-    }
-}
-
-@media only screen and (max-width: 320px)  {
-
-    /* Style Header Section */
-    .sw-header {
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .sw-header h1 {
-        padding-bottom: 10px;
     }
 }

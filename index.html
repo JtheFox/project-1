@@ -8,7 +8,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
@@ -40,6 +39,8 @@
                 <input type="text" class="sw-searchInput" placeholder="Go Somewhere Specific.">
                 <div class="sw-searchBtn"></div>
             </div>
+            <select class="sw-recents" name="recents" id="recents">
+            </select>
             <div class="sw-tooltip">What is this?
                 <span class="sw-tooltiptext">
                     <span class="sw-tooltiptitle">Take yourself on a journey.</span><br><br>
@@ -74,7 +75,8 @@
                 </ul>
             </div> -->
         </section>
-        <section class="sw-results mt-3 container">
+        <!-- Results state -->
+        <section class="sw-results mt-3 container" style="display:none">
             <!--Country Name and Flag-->
             <div class="row mb-4">
                 <div class="nameFlag">

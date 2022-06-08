@@ -188,36 +188,6 @@ body {
     background-color: #efefef;
 }
 
-/* Style for saved search */
-.saved-search {
-    margin-top: 50px;
-    padding: 25px 25px 15px 25px;
-    border: 2px solid white;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.saved-search h2 {
-    border-bottom: 2px solid white;
-}
-
-ul {
-    margin-top: 30px;
-    background-color:white;
-    color: black;
-    list-style-type: none;
-    text-align: start;
-}
-
-ul li {
-   position: relative; 
-   left: -25px; 
-   cursor: pointer;
-}
-
-ul li:hover {
-    color: green;
-}
 /* end search state style */
 /* results state style */
 /* country name and flag display */

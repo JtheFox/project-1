@@ -108,9 +108,9 @@ function parseCountry(data) {
         flag: data.flags.svg,
         capital: data.capital[0],
         language: Object.values(data.languages).join(', '),
-        timeZones: data.timezones,
-        population: data.population,
-        continents: data.continents.join(", "),
+        timeZones: data.timezones.join(', '),
+        population: data.population.toLocaleString(),
+        continent: data.continents.join(", "),
         //TODO: add all currencies
         currency: Object.values(data.currencies)[0].name
     }
@@ -126,14 +126,14 @@ function displayCountry(data, weather) {
     var language = $("#language");
     var currency = $("#currency");
     var timeZone = $("#time-zone");
-    var continents = $("#continents");
+    var continent = $("#continent");
     //Query Selector for weather info 
+    var capitalWeather = $('#capitalWeather');
     var dateAndTime = $("#date-time");
     var temperature = $("#temp");
     var windSpeed = $("#wind");
     var humidity = $("#humidity");
     var uvIndex = $("#uv-index");
-    var pressure = $("#pressure");
     //Display each country content to html 
     countryName.text(data.name);
     flag.attr("src", data.flag);
@@ -142,14 +142,14 @@ function displayCountry(data, weather) {
     language.text(data.language);
     currency.text(data.currency);
     timeZone.text(data.timeZones);
-    continents.text(data.continents);
+    continent.text(data.continent);
     //Display each weather content to html
+    capitalWeather.text(data.capital);
     dateAndTime.text(weather.dataTime);
-    temperature.text(`${weather.temp} \u2109`);
+    temperature.text(`${weather.temp} °F`);
     windSpeed.text(`${weather.windSpeed} MPH`);
     humidity.text(`${weather.humidity}%`);
     uvIndex.text(weather.uvIndex);
-    pressure.text(weather.pressure);
 }
 
 // random country picker

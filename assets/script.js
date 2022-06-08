@@ -170,7 +170,7 @@ searchText.on('keypress', function (event) {
 searchBtn.click(function () {
     var searchTerm = searchText.val();
     searchText.val('');
-    if (searchTerm.length === 0) return errorModal.show();
+    if (searchTerm.length === 0) return;
     // get country data from REST Countries API
     searchCountry(searchTerm);
 });

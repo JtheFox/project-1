@@ -1,8 +1,8 @@
 /* global elements */
 * {
     font-family: 'Quicksand', sans-serif !important;
-    font-size: 24px;
     font-weight: 400;
+    font-size: 24px;
 }
 
 body {
@@ -19,19 +19,11 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 0.25rem;
+    padding: 0.5rem 0.5rem 0;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     font-weight: lighter;
     line-height: 1.2rem;
-    cursor: default;
-}
-
-.result-header {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-weight: lighter;
-    line-height: 1.5rem;
     cursor: default;
 }
 
@@ -250,7 +242,8 @@ ul li:hover {
 .card {
     background: none;
     color: white;
-    border: none !important;
+    width: 10rem;
+    margin: 0;
 }
 
 p.demo-headings {
@@ -265,7 +258,7 @@ p.demo-headings {
 }
 
 #date-time {
-    margin: 0;
+    margin: 0 0 0.5rem;
     padding: 0;
 }
 
@@ -277,13 +270,6 @@ p.demo-headings {
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
-
-.card {
-    width: 220px;
-    margin: 20px;
-    padding: 10px;
-    border: 2px solid black;
 }
 
 .demo-headings {

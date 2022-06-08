@@ -47,8 +47,8 @@ function storeCountry(country) {
     if (savedSearch.length > 0) savedSearch = savedSearch.split(',');
     // add new search to list
     savedSearch.unshift(country);
-    // only save the 5 most recent searches
-    var newSavedSearch = savedSearch.slice(0, 5).join(',');
+    // only save the 5 most recent searches, user filter to remove older duplicate entries
+    var newSavedSearch = savedSearch.filter(((c, i) => { return savedSearch.indexOf(c) === i })).slice(0, 5).join(',');
     // update localStorage
     localStorage.setItem("savedSearch", newSavedSearch);
 }
@@ -124,7 +124,6 @@ function parseCountry(data) {
         timeZones: data.timezones.join(', '),
         population: data.population.toLocaleString(),
         continent: data.continents.join(", "),
-        //TODO: add all currencies
         currency: Object.values(data.currencies).map(c => c.name).join(', ')
     }
 }

@@ -266,34 +266,6 @@ p.demo-headings {
     padding: 0;
 }
 
-.card-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.demo-headings {
-    border-bottom: 2px solid black;
-}
-
-.saved-country {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 10px;
-    border: 2px solid white;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 35px;
-    text-align: center;
-}
-
-.saved-country:hover {
-    color: red;
-    cursor: pointer;
-}
-
 /* Style for Weather Section */
 #capitalWeather {
     font-size: inherit;
@@ -308,63 +280,32 @@ footer {
     color: white;
 }
 
-.credit a {
-    color: white;
-    text-decoration: none;
-}
-
-.credit a:hover {
-    color: green;
-}
-
 /* Media Queries */
 @media only screen and (max-width: 800px) {
 
     /* Style Demographics Section */
     .demographics, .weather {
-        width: 750px;
         margin: 0 auto;
-    }
-
-    .demo-headings {
-        font-size: 18px;
     }
 
     /* Style Weather Section */
     .weather {
         margin-top: 50px;
         margin-bottom: 50px;
-    }
-
-    .card p {
-        font-size: 17px;
     }
 } 
 
 @media only screen and (max-width: 768px) {
 
-    /* Style Demographics Section */
-    #flag {
-        width: 600px;
-    }
-
+    /* Style the Demographics Section */
     .demographics, .weather {
-        width: 700px;
         margin: 0 auto;
-    }
-
-    .demo-headings {
-        font-size: 20px;
     }
 
     /* Style Weather Section */
     .weather {
         margin-top: 50px;
         margin-bottom: 50px;
-    }
-
-    .card p {
-        font-size: 18px;
     }
 }
 
@@ -383,19 +324,9 @@ footer {
         padding-bottom: 10px;
     }
 
-    /* Style the demographics section */
-    #flag {
-        width: 300px;
-    }
-
     /* Style Demographics Section */
     .demographics, .weather {
-        width: 300px;
         margin: 0 auto;
-    }
-
-    .demo-headings {
-        font-size: 20px;
     }
 
     /* Style Weather Section */
@@ -403,11 +334,6 @@ footer {
         margin-top: 50px;
         margin-bottom: 40px;
     }
-
-    .card-flex { 
-        flex-direction: column;
-    }
-
 }
 
 @media only screen and (max-width: 320px)  {
@@ -423,11 +349,5 @@ footer {
 
     .sw-header h1 {
         padding-bottom: 10px;
-    }
-
-    /* Style the flag section */
-    #flag {
-        width: 250px;
-        margin: 0 auto;
     }
 }

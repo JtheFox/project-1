@@ -125,7 +125,7 @@ function parseCountry(data) {
         population: data.population.toLocaleString(),
         continent: data.continents.join(", "),
         //TODO: add all currencies
-        currency: Object.values(data.currencies)[0].name
+        currency: Object.values(data.currencies).map(c => c.name).join(', ')
     }
 }
 

@@ -6,7 +6,7 @@ var newSearchBtn = $('.sw-newSearch');
 var footer = $("footer");
 var searchState = $('.sw-search');
 var resultsState = $('.sw-results');
-var modal = new bootstrap.Modal($('.modal')[0], { keyboard: false });
+var errorModal = new bootstrap.Modal($('.errorModal')[0], { keyboard: false });
 var weatherAPIKey = 'f8bd4d0f6f0c65783299bae01aa1f960';
 var restCountryDomain = 'https://restcountries.com/v3.1/';
 
@@ -19,7 +19,7 @@ $(function () {
 function error(error) {
     // log error in console then show error modalmic
     console.error(error);
-    modal.show();
+    errorModal.show();
 }
 
 function displayState(state) {
@@ -66,7 +66,7 @@ function searchCountry(searchTerm) {
         .then(data => {
             var countryData = parseCountry(data[0]);
             //Check to see if country is found, if not found display error 
-            if (!countryData.name) return modal.show();
+            if (!countryData.name) return errorModal.show();
             storeCountry(countryData.name);
             getWeather(countryData);
         }).catch(err => error(err));
@@ -170,7 +170,7 @@ searchText.on('keypress', function (event) {
 searchBtn.click(function () {
     var searchTerm = searchText.val();
     searchText.val('');
-    if (searchTerm.length === 0) return modal.show();
+    if (searchTerm.length === 0) return errorModal.show();
     // get country data from REST Countries API
     searchCountry(searchTerm);
 });

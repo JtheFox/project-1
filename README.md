@@ -22,8 +22,8 @@
 ![Results](assets/images/somewheresearch.JPG)
 
 ## Resources:
-- [Online Repository](https://github.com/JtheFox/somewhere-project)
-- [Live Site](https://jthefox.github.io/somewhere-project/)
+- [Online Repository](https://github.com/jsonFox/somewhere-project)
+- [Live Site](https://jsonfox.github.io/somewhere-project/)
 
 ## Authors:
 - Jason Fox
